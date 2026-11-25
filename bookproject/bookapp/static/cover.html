@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Midnight Library - Book Back Cover</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px 16px;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(135deg, #101827, #24334a 55%, #101827);
+      color: #f7f0df;
+    }
+    .book {
+      width: min(100%, 760px);
+      min-height: 900px;
+      position: relative;
+      overflow: hidden;
+      padding: 58px clamp(28px, 7vw, 66px) 42px;
+      background:
+        radial-gradient(circle at 82% 12%, rgba(224,174,91,.22), transparent 25%),
+        radial-gradient(circle at 12% 88%, rgba(95,139,154,.18), transparent 30%),
+        linear-gradient(155deg, #17283a, #263c50 58%, #182638);
+      border: 1px solid rgba(231,195,128,.65);
+      box-shadow: 0 25px 70px rgba(0,0,0,.5);
+    }
+    .book::before, .book::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      border: 1px solid rgba(226,190,125,.42);
+    }
+    .book::before { inset: 15px; }
+    .book::after { inset: 21px; border-color: rgba(226,190,125,.18); }
+    .content { position: relative; z-index: 1; }
+    .eyebrow {
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: .28em;
+      font: 12px Arial, sans-serif;
+      color: #e7c17e;
+      margin: 0 0 28px;
+    }
+    h1 {
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      line-height: 1.15;
+      font-size: clamp(32px, 7vw, 54px);
+      font-weight: 500;
+      margin: 0;
+      color: #f7e6bd;
+    }
+    .subtitle {
+      text-align: center;
+      font-style: italic;
+      color: #d9c9a7;
+      font-size: 18px;
+      margin: 12px 0 28px;
+    }
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: center;
+      color: #e7c17e;
+      margin: 24px 0 30px;
+    }
+    .ornament::before, .ornament::after {
+      content: "";
+      height: 1px;
+      width: 90px;
+      background: linear-gradient(90deg, transparent, #c99d5d);
+    }
+    .ornament::after { transform: scaleX(-1); }
+    .moon-art {
+      height: 190px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 28px;
+      position: relative;
+    }
+    .moon {
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fff1c8, #d9ad65 65%, #a8783d);
+      box-shadow: 0 0 45px rgba(231,193,126,.28);
+      position: relative;
+    }
+    .moon::after {
+      content: "";
+      position: absolute;
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: #203449;
+      left: 34px;
+      top: -12px;
+    }
+    .star {
+      position: absolute;
+      color: #f1d59c;
+      font-size: 23px;
+    }
+    .s1 { top: 20px; left: 22%; }
+    .s2 { top: 52px; right: 22%; font-size: 15px; }
+    .s3 { bottom: 18px; left: 31%; font-size: 13px; }
+    .s4 { bottom: 26px; right: 30%; font-size: 20px; }
+    .description {
+      max-width: 570px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.85;
+      color: #eee5d4;
+    }
+    .quote {
+      max-width: 520px;
+      margin: 30px auto;
+      text-align: center;
+      color: #e7c17e;
+      font-style: italic;
+      font-size: 20px;
+      line-height: 1.5;
+    }
+    .quote small {
+      display: block;
+      margin-top: 10px;
+      font: 10px Arial, sans-serif;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #cbb994;
+    }
+    .about {
+      border-top: 1px solid rgba(231,193,126,.45);
+      padding-top: 22px;
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: 1fr 105px;
+      gap: 24px;
+      align-items: end;
+    }
+    h2 {
+      color: #e7c17e;
+      font: 12px Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      margin: 0 0 10px;
+    }
+    .bio {
+      color: #d9d4c8;
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 0;
+    }
+    .barcode {
+      height: 68px;
+      background: #f4eddf;
+      padding: 7px 8px 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .bars {
+      height: 43px;
+      background: repeating-linear-gradient(90deg,
+        #18202a 0 2px, transparent 2px 4px,
+        #18202a 4px 5px, transparent 5px 8px,
+        #18202a 8px 12px, transparent 12px 14px,
+        #18202a 14px 15px, transparent 15px 18px);
+    }
+    .barcode span {
+      color: #18202a;
+      font: 8px Arial, sans-serif;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    .publisher {
+      text-align: center;
+      margin-top: 28px;
+      color: #c7b48f;
+      text-transform: uppercase;
+      letter-spacing: .24em;
+      font: 10px Arial, sans-serif;
+    }
+    @media (max-width: 520px) {
+      .book { min-height: 0; padding-top: 42px; }
+      .description { font-size: 15px; }
+      .about { grid-template-columns: 1fr; }
+      .barcode { width: 105px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="book">
+    <div class="content">
+      <p class="eyebrow">A story beyond time</p>
+      <h1>The Midnight<br>Library</h1>
+      <p class="subtitle">Every choice opens a new world</p>
+      <div class="ornament">✦</div>
+
+      <div class="moon-art" aria-label="Decorative crescent moon and stars">
+        <span class="star s1">✧</span>
+        <span class="star s2">✦</span>
+        <span class="star s3">·</span>
+        <span class="star s4">✧</span>
+        <div class="moon"></div>
+      </div>
+
+      <p class="description">
+        Between the pages of forgotten books lies a library unlike any other.
+        Its shelves hold countless lives, each one shaped by a different
+        decision. When Mira discovers its hidden doors, she is given the
+        chance to explore the paths she never took — but every story has
+        a secret, and every choice comes with a price.
+      </p>
+
+      <div class="quote">
+        “Sometimes the smallest step can lead to the greatest adventure.”
+        <small>— A tale of hope, courage and second chances</small>
+      </div>
+
+      <section class="about">
+        <div>
+          <h2>About the author</h2>
+          <p class="bio">
+            A. K. Morgan writes stories about mysterious places, unforgettable
+            journeys and the extraordinary magic hidden in everyday life.
+            The Midnight Library is a celebration of imagination and the
+            courage to begin again.
+          </p>
+        </div>
+        <div class="barcode" aria-label="Decorative barcode">
+          <div class="bars"></div>
+          <span>9 780123 456789</span>
+        </div>
+      </section>
+      <p class="publisher">Silver Lantern Books</p>
+    </div>
+  </main>
+</body>
+</html>
